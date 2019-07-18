@@ -10,8 +10,25 @@ defmodule Iw.MixProject do
       compilers: [:elixir_make | Mix.compilers()],
       make_targets: ["all"],
       make_clean: ["clean"],
+      package: package(),
       deps: deps()
     ]
+  end
+
+  def package do
+    [
+      licenses: ["ISC"],
+      links: %{
+        github: "https://github.com/ConnorRigby/elixir-iw",
+        iw: "https://wireless.wiki.kernel.org/en/users/documentation/iw"
+      },
+      files: ~w(lib .formatter.exs mix.exs README* LICENSE*),
+      description: description()
+    ]
+  end
+
+  def description do
+    "A cross crompilation mix wrapper around iw"
   end
 
   # Run "mix help compile.app" to learn about applications.
@@ -24,9 +41,8 @@ defmodule Iw.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:elixir_make, "~> 0.5", runtime: false}
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+      {:elixir_make, "~> 0.5", runtime: false},
+      {:ex_doc, "~> 0.19", only: :dev, runtime: false}
     ]
   end
 end
