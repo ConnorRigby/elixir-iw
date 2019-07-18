@@ -22,21 +22,14 @@ defmodule Iw do
     end)
   end
 
-  if Code.ensure_loaded?(VintageNet.WiFi.AccessPoint) do
-    def ap(bssid, output) do
-      ssid = ssid(output)
-      frequency = frequency(output)
-      signal_dbm = signal_dbm(output)
-      flags = flags(output)
+  def ap(bssid, output) do
+    ssid = ssid(output)
+    frequency = frequency(output)
+    signal_dbm = signal_dbm(output)
+    flags = flags(output)
+    if Code.ensure_loaded?(VintageNet.WiFi.AccessPoint) do
       apply(VintageNet.WiFi.AccessPoint, :new, [bssid, ssid, frequency, signal_dbm, flags])
-    end
-  else
-    def ap(bssid, output) do
-      ssid = ssid(output)
-      frequency = frequency(output)
-      signal_dbm = signal_dbm(output)
-      flags = flags(output)
-
+    else
       %{
         bssid: bssid,
         ssid: ssid,

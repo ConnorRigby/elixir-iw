@@ -42,6 +42,7 @@ defmodule Iw.MixProject do
   defp deps do
     [
       {:elixir_make, "~> 0.5", runtime: false},
+      {:vintage_net, "~> 0.3.1", optional: true},
       {:ex_doc, "~> 0.19", only: :dev, runtime: false}
     ]
   end
