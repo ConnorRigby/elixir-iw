@@ -4,7 +4,7 @@ defmodule Iw.MixProject do
   def project do
     [
       app: :iw,
-      version: "0.1.0",
+      version: "0.2.0",
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
       compilers: [:elixir_make | Mix.compilers()],
@@ -22,7 +22,7 @@ defmodule Iw.MixProject do
         github: "https://github.com/ConnorRigby/elixir-iw",
         iw: "https://wireless.wiki.kernel.org/en/users/documentation/iw"
       },
-      files: ~w(lib .formatter.exs mix.exs README* LICENSE*),
+      files: ~w(lib .formatter.exs mix.exs README* LICENSE* Makefile),
       description: description()
     ]
   end
