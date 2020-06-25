@@ -18,17 +18,18 @@
 # LDFLAGS	linker flags for linking all binaries
 # ERL_LDFLAGS	additional linker flags for projects referencing Erlang libraries
 
-IW_DL_URL := https://mirrors.edge.kernel.org/pub/software/network/iw/iw-5.0.1.tar.xz
+IW_VERSION := 5.4
+IW_DL_URL := https://mirrors.edge.kernel.org/pub/software/network/iw/iw-$(IW_VERSION).tar.xz
 
 ifeq ($(MIX_COMPILE_PATH),)
 call_from_make:
 	mix compile
 endif
 
-PREFIX = $(MIX_COMPILE_PATH)/../priv
-BUILD  = $(MIX_COMPILE_PATH)/../obj
+PREFIX = $(MIX_APP_PATH)/priv
+BUILD  = $(MIX_APP_PATH)/obj
 
-IW_SRC = $(BUILD)/iw-5.0.1.tar.xz
+IW_SRC = $(BUILD)/iw-$(IW_VERSION).tar.xz
 IW_BIN = $(PREFIX)/usr/sbin/iw
 
 # Check that we're on a supported build platform
@@ -54,7 +55,7 @@ clean:
 	$(RM) -r $(BUILD)
 
 $(IW_BIN): $(IW_SRC)
-	$(IW_MAKE_ENV) make -C $(BUILD)/iw-5.0.1 DESTDIR=$(PREFIX) install
+	$(IW_MAKE_ENV) make -C $(BUILD)/iw-$(IW_VERSION) DESTDIR=$(PREFIX) install
 
 $(IW_SRC):
 	wget -O $(IW_SRC) $(IW_DL_URL)
